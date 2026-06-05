@@ -1,0 +1,13 @@
+# @VGMT1.0 @GPOINT
+# @R-143.254817996/-142.672808354/62.5063215793/62.6697638331             
+# @Jp"+proj=longlat +datum=WGS84 +no_defs "
+# @Jw"GEOGCS[\"GCS_WGS_1984\",DATUM[\"WGS_1984\",SPHEROID[\"WGS_84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.017453292519943295]]"
+# @Ntitle|usr_map_id|asof_date|pub_date|regionname|auth_pub|scale|units|proj|series_ed
+# @Tstring|string|string|string|string|string|string|string|string|string
+# FEATURE_DATA
+>
+# @D"USGS 63k Topographic Map Nabesna C-4 Quadrangle"|mcnabb_c4|1957-08-07|1992-01-01|"Alaska"|"USGS"|"1:63 360"|English|UTM|"Alaska 1:63,360"
+-143 62.6
+>
+# @D"USGS 63k Topographic Map Nabesna C-5 Quadrangle"|mcnabb_c5|1957-08-07|1992-01-01|"Alaska"|"USGS"|"1:63 360"|English|UTM|"Alaska 1:63,360"
+-143 62.6

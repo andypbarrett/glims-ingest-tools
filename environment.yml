@@ -1,0 +1,39 @@
+name: glims-ingest-tools
+channels:
+ - conda-forge
+ - default
+dependencies:
+ - python ~=3.12
+
+ ###################################################
+ # Imported dependencies and extensions            #
+ ###################################################
+
+ # Workflow
+ - pqdm
+ 
+ # Jupyterlab for notebooks
+ - jupyterlab
+
+ # Data Access
+ - earthaccess
+
+ # Plotting
+ - matplotlib
+ - cartopy
+ - seaborn
+
+ # pandas and geopandas
+ - pandas
+ - geopandas
+ - openpyxl
+
+ # image manipulation
+ - scikit-image
+
+ # testing
+ - pytest
+
+ - pip
+ - pip:
+   - --editable .
