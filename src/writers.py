@@ -84,3 +84,73 @@ def make_session_gmt(
             )
 
     return '\n'.join(result)
+
+
+def make_image_feature_data(img: dict) -> str:
+    """Creates a GMT format image data string
+
+    Arguments:
+      img : a dict of the format
+
+        {
+            "source_date": dt.datetime of source date of image,
+            "instrument": name of instrument
+            "image_id": original id for image
+            "centroid": (lat, lon) centroid of image
+        }
+
+    Returns:
+      string object formatted as GMT point feature data
+    """
+    required_keys = [
+        "source_date",
+        "instrument",
+        "image_id",
+        "centroid"
+        ]
+    if not any([key in img for key in required_keys]):
+        raise KeyError(f"img must have keys {', '.join(required_keys)}, "
+                       f" got {', '.join(img.keys())}")
+
+    s = "# @D"
+    s += img["source_date"].strftime('%Y-%m-%d')
+    s += '|'
+    s += img["instrument"]
+    s += '|'
+    s += img["image_id"] if img["image_id"] else 'unknown'
+    s += '\n'
+    s += f'{img["centroid"][1]:.1f} {img["centroid"][0]:.1f}'
+
+    return s
+
+
+def make_image_gmt(bbox: tuple, crs_wkt: str, image: list) -> str:
+    """Makes image.gmt file string
+
+    Arguments:
+      bbox : bounding box of region
+      crs_wkt : CRS in WKT format
+      image : list of image data as dict.  Dict expected to contain source_date,
+         instrument, image_id, and centroid of image as tuple (lat, lon)
+
+    Returns:
+      string object formated as image.gmt file
+    """
+
+    DATA_HEADER = [
+        '# @Nacq_time|inst_name|orig_id',
+        '# @Tstring|string|string'
+    ]
+
+    result = [GMT_VERSION]
+    result.append(make_region_str(bbox))
+    result.append(make_crs_str(crs_wkt))
+    result += DATA_HEADER
+    result.append('# FEATURE_DATA')
+
+    for img in image:
+        if len(image) > 1:
+            result.append(">")
+        result.append(make_image_feature_data(img))
+
+    return '\n'.join(result)
