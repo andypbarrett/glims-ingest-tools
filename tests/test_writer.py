@@ -41,3 +41,43 @@ def test_make_feature_data_str():
     print(result)
 
     assert result == target
+
+
+def test_make_session_gmt():
+
+    target = """# @VGMT1.0 @GPOINT
+# @R-123.7742/-123.1238/47.5231/47.9104
+# @Jw"GEOGCS[\"GCS_WGS_1984\",DATUM[\"WGS_1984\",SPHEROID[\"WGS_84\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"
+# @Nrc_id|analy_time|data_src|proc_desc|anlst_surn|anlst_givn|3d_desc
+# @Tstring|string|string|string|string|string|string
+# FEATURE_DATA
+>
+# @D507|2017-10-24|"NAIP imagery and LiDAR data"|"Manual digitization"|Mozer|Max|""
+-123.4 47.6
+>
+# @D507|2017-10-24|"NAIP imagery and LiDAR data"|"Manual digitization"|Pflug|Justin|""
+-123.4 47.6"""
+
+    bbox = (-123.7742, -123.1238, 47.5231, 47.9104)
+    crs_wkt = '"GEOGCS[\"GCS_WGS_1984\",DATUM[\"WGS_1984\",SPHEROID[\"WGS_84\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"'
+    regional_center = '507'
+    analysis_time = dt.datetime(2017, 10, 24)
+    data_source = 'NAIP imagery and LiDAR data'
+    process_description = 'Manual digitization'
+    analyst = [('Mozer', 'Max'), ('Pflug', 'Justin')]
+    description_3d = ''
+    centroid = (-123.4, 47.6)
+
+    result = writers.make_session_gmt(
+        bbox,
+        crs_wkt,
+        regional_center,
+        analysis_time,
+        data_source,
+        process_description,
+        analyst,
+        description_3d,
+        centroid,
+        )
+
+    assert result == target
