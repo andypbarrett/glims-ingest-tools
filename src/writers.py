@@ -28,7 +28,7 @@ def make_feature_data_str(regional_center: str, analysis_time: str,
             f'{centroid[0]:.1f} {centroid[1]:.1f}')
 
 
-def session_to_gmt(
+def make_session_gmt(
         bbox: tuple,
         crs_wkt: str,
         regional_center: str,
@@ -37,6 +37,7 @@ def session_to_gmt(
         process_description: str,
         analyst: list,
         description_3d: str,
+        centroid: tuple,
 ) -> str:
     """Write a session_input.gmt file
 
@@ -49,6 +50,7 @@ def session_to_gmt(
       process_description : description of mapping process; e.g. manual digitization
       analyst : list of analysts as tuples (surname, given_name)
       description_3d : description of 3-dimensional data source
+      centroid : centroid of region
 
     Returns:
       formatted string object containing a session file
@@ -58,8 +60,27 @@ def session_to_gmt(
         '# @Nrc_id|analy_time|data_src|proc_desc|anlst_surn|anlst_givn|3d_desc',
         '# @Tstring|string|string|string|string|string|string'
         ]
-    
+
     result = [GMT_VERSION]
     result.append(make_region_str(bbox))
+    result.append(make_crs_str(crs_wkt))
+    result += DATA_HEADER
+    result.append('# FEATURE_DATA')
 
-    
+    for analyst_surname, analyst_given in analyst:
+        if len(analyst) > 1:
+            result.append(">")
+        result.append(
+            make_feature_data_str(
+                regional_center,
+                analysis_time,
+                data_source,
+                process_description,
+                analyst_surname,
+                analyst_given,
+                description_3d,
+                centroid,
+                )
+            )
+
+    return '\n'.join(result)
