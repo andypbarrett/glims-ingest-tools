@@ -85,10 +85,11 @@ def test_make_session_gmt():
 
 def test_make_image_gmt():
 
+# # @Jw"GEOGCS[\"GCS_WGS_1984\",DATUM[\"WGS_1984\",SPHEROID[\"WGS_84\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.017453292519943295]]"
+
     target = """# @VGMT1.0 @GPOINT
 # @R-123.7742/-123.1238/47.5231/47.9104
-# @Jp"+proj=longlat +datum=WGS84 +no_defs "
-# @Jw"GEOGCS[\"GCS_WGS_1984\",DATUM[\"WGS_1984\",SPHEROID[\"WGS_84\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.017453292519943295]]"
+# @Jw"GEOGCS[\"GCS_WGS_1984\",DATUM[\"WGS_1984\",SPHEROID[\"WGS_84\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"
 # @Nacq_time|inst_name|orig_id
 # @Tstring|string|string
 # FEATURE_DATA
@@ -111,5 +112,22 @@ def test_make_image_gmt():
         crs_wkt,
         image,
         )
+
+    assert result == target
+
+
+def test_make_image_feature_data():
+
+    target = """# @D2015-08-01|naip2015|unknown
+-123.4 47.6"""
+
+    img = {
+        "source_date": dt.datetime(2015, 8, 1),
+        "instrument": "naip2015",
+        "image_id": None,
+        "centroid": (47.6, -123.4),
+        }
+
+    result = writers.make_image_feature_data(img)
 
     assert result == target
