@@ -24,7 +24,7 @@ def make_feature_data_str(regional_center: str, analysis_time: str,
     """Return a feature data GMT formatted string"""
     return (f'# @D{regional_center}|{analysis_time.strftime("%Y-%m-%d")}|'
             f'\"{data_source}\"|\"{process_description}\"|'
-            f'{analyst_surname}|{analyst_given}|\"{description_3d}\"\n'
+            f'\"{analyst_surname}\"|\"{analyst_given}\"|\"{description_3d}\"\n'
             f'{centroid[0]:.1f} {centroid[1]:.1f}')
 
 
@@ -119,7 +119,7 @@ def make_image_feature_data(img: dict) -> str:
     s += '|'
     s += img["image_id"] if img["image_id"] else 'unknown'
     s += '\n'
-    s += f'{img["centroid"][1]:.1f} {img["centroid"][0]:.1f}'
+    s += f'{img["centroid"].x:.1f} {img["centroid"].y:.1f}'
 
     return s
 
@@ -154,3 +154,7 @@ def make_image_gmt(bbox: tuple, crs_wkt: str, image: list) -> str:
         result.append(make_image_feature_data(img))
 
     return '\n'.join(result)
+
+
+def make_metadata():
+    pass
