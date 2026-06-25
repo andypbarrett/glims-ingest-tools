@@ -1,0 +1,24 @@
+'Hartl, Lea', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', lea.hartl@oeaw.ac.at, new
+'Akguen, Ayla Marie', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', , new
+'Bolch, Tobias', 'Institute of Geodesy, Graz University of Technology, 8010 Graz, Austria', 'tobias.bolch@tugraz.at', current
+'Conzelmann, Svenja', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', , new
+'Hartig, Anne', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', , new
+'Hartl, Lea', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', 'lea.hartl@oeaw.ac.at', new
+'Haut, Anna', 'Department of Environment and Biodiversity, University of Salzburg, 5020 Salzburg, Austria', , new
+'Helfricht, Kay', 'Hydrographic Service Tyrol, Office of the Tyrolean Government, 6020 Innsbruck, Austria', , new
+'Hynek, Bernhard', 'Department Climate Impact Research, Geosphere Austria, 1190 Vienna, Austria', 'bernhard.hynek@geosphere.at', new
+'Kaucher, Marie Sophie', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', , new 
+'Kellerer-Pirklbauer, Andreas', 'Department of Geography and Regional Science, University of Graz, 8010 Graz, Austria', , new
+'Kogel, Ann Christin', 'Department of Atmospheric and Cryospheric Sciences, University of Innsbruck, 6020 Innsbruck, Austria', , kogel
+'Krippes, Julie', 'Department of Environment and Biodiversity, University of Salzburg, 5020 Salzburg, Austria', , new
+'Lauria, Marcela Violeta', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', , new
+'Mayer, Christoph', 'Geodesy and Glaciology, Bavarian Academy of Sciences and Humanities, 80539 Munich, Germany', , exists for GEUS
+'Otto, Jan-Cristoph', 'Department of Environment and Biodiversity, University of Salzburg, 5020 Salzburg, Austria', 'jan-christoph.otto@plus.ac.at', new
+'Prinz, Rainer', 'Department of Atmospheric and Cryospheric Sciences, University of Innsbruck, 6020 Innsbruck, Austria', , new
+'Proelß, Sina', 'Hochgebirgsnaturpark Zillertaler Alpen, 6295 Ginzling, Austria', 's.proelss@gmx.net', , new
+'Schönleber, Lea', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', , new
+'Seiser, Bernd', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', , new
+'Stocker-Waldhuber, Martin', 'Institute for Interdisciplinary Mountain Research, Austrian Academy of Sciences, 6020 Innsbruck, Austria', , new
+'Strudl, Markus', '6460 Imst, Austria', , new
+'Verhounik, Martin', 'Institute of Geodesy, Graz University of Technology, 8010 Graz, Austria', , new
+'Zandler, Harald', 'Department of Geography and Regional Science, University of Graz, 8010 Graz, Austria', 'harald.zandler@uni-graz.at', new

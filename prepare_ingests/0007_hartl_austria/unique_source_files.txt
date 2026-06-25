@@ -1,0 +1,10 @@
+Orthoimagery Province of Tyrol
+DEM Hillshade Province of Carinthia
+PlanetScope Orthoimagery
+Orthoimagery Federal Office of Metrology and Surveying - data.bev.gv.at
+Orthoimagery Province of Salzburg
+Orthoimagery Province of Carinthia
+UAV-borne photogrammetric survey by Geosphere Austria
+Orthoimagery and DEM Hillshade Province of Salzburg
+DEM Hillshade and Orthoimagery Province of Tyrol
+Orthoimagery Province of Vorarlberg
