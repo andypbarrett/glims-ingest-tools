@@ -1,6 +1,7 @@
 """Parses people.txt"""
 
 import re
+import datetime as dt
 from collections import namedtuple
 from pathlib import Path
 
@@ -107,12 +108,12 @@ def make_add_person_sql(people):
     return lines
 
 
-def parse_people():
+def parse_people(outfile: Path):
 
     people_path = Path.home() / "src" / "glims-ingest-tools" / "prepare_ingests" / "0007_hartl_austria" / "people.txt"
 
-#    new_contact_id = get_next_ids().contact_id
-    new_contact_id = 1067
+    new_contact_id = get_next_ids().contact_id
+#    new_contact_id = 1067
     rc_id = 34
 
     with open(people_path, "r") as f:
@@ -130,8 +131,11 @@ def parse_people():
 
         people.append(person)
 
-    print(make_add_person_sql(people))
+    with open(outfile, "w") as fo:
+        fo.write(make_add_person_sql(people))
 
 
 if __name__ == "__main__":
-    parse_people()
+    outfile = Path("./add_people_agi.sql")
+
+    parse_people(outfile)
