@@ -31,6 +31,9 @@ dependencies:
  # image manipulation
  - scikit-image
 
+ # SQL
+ - psycopg
+ 
  # testing
  - pytest
 
