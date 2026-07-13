@@ -1,9 +1,13 @@
-"""QC and Homogenize Shapefile and extract relevant information for session.shp, 
-images.shp, and input.shp"""
+"""QC and Homogenize Shapefile and extract relevant information for
+session.shp, images.shp, and input.shp"""
+import warnings
 
 from pathlib import Path
 
 import geopandas as gpd
+import pandas as pd
+import numpy as np
+
 
 REQUIRED_FIELDS = [
     "loc_unc_x",
