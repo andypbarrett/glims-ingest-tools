@@ -238,6 +238,8 @@ def make_glacier_shapefile(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
 
     glacier_gdf = assign_uncertainty(glacier_gdf)
 
+    glacier_gdf["src_date"] = glacier_gdf.src_date.dt.strftime("%Y%m%d")
+
     return glacier_gdf
 
 
