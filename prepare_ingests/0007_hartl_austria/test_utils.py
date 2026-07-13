@@ -1,3 +1,5 @@
+import datetime as dt
+
 import geopandas as gpd
 
 from shapely.geometry import Point
@@ -29,7 +31,7 @@ test_df = gpd.GeoDataFrame(
         ],
         'src_date': [
             '20260701', '20260421', '20250101',
-            '20260701', '20260421', '20250101', '20240902'
+            '20260701', '20260421', '20250101', '20240902',
         ],
         'image_ID1': [
             '3722, 3822, 3823',
@@ -39,7 +41,7 @@ test_df = gpd.GeoDataFrame(
             'A2023250_4522-5203_DOM',
             '3922-5000',
             '3823-5302, 3823-5303, 3822-5100,3822-5101',
-            ]
+            ],
         'geometry': [
             Point(1,2),
             Point(3,4),
@@ -53,118 +55,134 @@ test_df = gpd.GeoDataFrame(
 )
 
 
-image_target = [
+target = [
     {
-        'id': '1',
-        'source': 'DEM Hillshade Province of Carinthia',
-        'src_date': '20260701',
+        'local_id': '1',
+        'instrument': 'DEM Hillshade Province of Carinthia',
+        'instrument_short_name': 'CarinthDEM',
+        'source_date': dt.datetime(2026, 7, 1),
         'image_id': '3722',
-        'geometry': Point(1, 2)
+        'centroid': Point(1, 2)
     },
     {
-        'id': '1',
-        'source': 'DEM Hillshade Province of Carinthia',
-        'src_date': '20260701',
+        'local_id': '1',
+        'instrument': 'DEM Hillshade Province of Carinthia',
+        'instrument_short_name': 'CarinthDEM',
+        'source_date': dt.datetime(2026, 7, 1),
         'image_id': '3822',
-        'geometry': Point(1, 2)
+        'centroid': Point(1, 2)
     },
     {
-        'id': '1',
-        'source': 'DEM Hillshade Province of Carinthia',
-        'src_date': '20260701',
+        'local_id': '1',
+        'instrument': 'DEM Hillshade Province of Carinthia',
+        'instrument_short_name': 'CarinthDEM',
+        'source_date': dt.datetime(2026, 7, 1),
         'image_id': '3823',
-        'geometry': Point(1, 2)
+        'centroid': Point(1, 2)
     },
     {
-        'id': '2',
-        'source': 'Orthoimagery Province of Salzburg',
-        'src_date': '20260421',
+        'local_id': '2',
+        'instrument': 'Orthoimagery Province of Salzburg',
+        'instrument_short_name': 'Aerial22',
+        'source_date': dt.datetime(2026, 4, 21),
         'image_id': '3722',
-        'geometry': Point(3, 4)
+        'centroid': Point(3, 4)
     },
     {
-        'id': '2',
-        'source': 'Orthoimagery Province of Salzburg',
-        'src_date': '20260421',
+        'local_id': '2',
+        'instrument': 'Orthoimagery Province of Salzburg',
+        'instrument_short_name': 'Aerial22',
+        'source_date': dt.datetime(2026, 4, 21),
         'image_id': '3822',
-        'geometry': Point(3, 4)
+        'centroid': Point(3, 4)
     },
     {
-        'id': '2',
-        'source': 'Orthoimagery Province of Salzburg',
-        'src_date': '20260421',
+        'local_id': '2',
+        'instrument': 'Orthoimagery Province of Salzburg',
+        'instrument_short_name': 'Aerial22',
+        'source_date': dt.datetime(2026, 4, 21),
         'image_id': '3823',
-        'geometry': Point(3, 4)
+        'centroid': Point(3, 4)
     },
     {
-        'id': '2',
-        'source': 'Orthoimagery Province of Tyrol',
-        'src_date': '20260421',
+        'local_id': '2',
+        'instrument': 'Orthoimagery Province of Tyrol',
+        'instrument_short_name': 'Aerial20',
+        'source_date': dt.datetime(2026, 4, 21),
         'image_id': '3822-5000',
-        'geometry': Point(3, 4)
+        'centroid': Point(3, 4)
     },
     {
-        'id': '2',
-        'source': 'Orthoimagery Province of Tyrol',
-        'src_date': '20260421',
+        'local_id': '2',
+        'instrument': 'Orthoimagery Province of Tyrol',
+        'instrument_short_name': 'Aerial20',
+        'source_date': dt.datetime(2026, 4, 21),
         'image_id': '3822-5001',
-        'geometry': Point(3, 4)
-    },,
+        'centroid': Point(3, 4)
+    },
     {
-        'id': '3',
-        'source': 'PlanetScope Orthoimagery',
-        'src_date': '20250101',
+        'local_id': '3',
+        'instrument': 'PlanetScope Orthoimagery',
+        'instrument_short_name': 'SuperDove',
+        'source_date': dt.datetime(2025, 1, 1),
         'image_id': '382348',
-        'geometry': Point(5, 6)
+        'centroid': Point(5, 6)
     },
     {
-        'id': '4',
-        'source': 'Orthoimagery Federal Office of Metrology and Surveying - data.bev.gv.at',
-        'src_date': '20260701',
+        'local_id': '4',
+        'instrument': 'Orthoimagery Federal Office of Metrology and Surveying - data.bev.gv.at',
+        'instrument_short_name': 'Aerial24',
+        'source_date': dt.datetime(2026, 7, 1),
         'image_id': '4429',
-        'geometry': Point(7, 8)
+        'centroid': Point(7, 8)
     },
     {
-        'id': '5',
-        'source': 'Orthoimagery Province of Salzburg',
-        'src_date': '20260421',
+        'local_id': '5',
+        'instrument': 'Orthoimagery Province of Salzburg',
+        'instrument_short_name': 'Aerial22',
+        'source_date': dt.datetime(2026, 4, 21),
         'image_id': 'A2023250_4522-5203_DOM',
-        'geometry': Point(-1, -2)
+        'centroid': Point(-1, -2)
     },
     {
-        'id': '6',
-        'source': 'Orthoimagery Province of Carinthia',
-        'src_date': '20250101',
+        'local_id': '6',
+        'instrument': 'Orthoimagery Province of Carinthia',
+        'instrument_short_name': 'Aerial21',
+        'source_date': dt.datetime(2025, 1, 1),
         'image_id': '3922-5000',
-        'geometry': Point(-3, -4)
+        'centroid': Point(-3, -4)
     },
     {
-        'id': '7',
-        'source': 'UAV-borne photogrammetric survey by Geosphere Austria',
-        'src_date': '20240902',
+        'local_id': '7',
+        'instrument': 'UAV-borne photogrammetric survey by Geosphere Austria',
+        'instrument_short_name': 'GeosphUAV',
+        'source_date': dt.datetime(2024, 9, 2),
         'image_id': '3823-5302',
-        'geometry': Point(-5, -6)
+        'centroid': Point(-5, -6)
     },
     {
-        'id': '7',
-        'source': 'UAV-borne photogrammetric survey by Geosphere Austria',
-        'src_date': '20240902',
+        'local_id': '7',
+        'instrument': 'UAV-borne photogrammetric survey by Geosphere Austria',
+        'instrument_short_name': 'GeosphUAV',
+        'source_date': dt.datetime(2024, 9, 2),
         'image_id': '3823-5303',
-        'geometry': Point(-5, -6)
+        'centroid': Point(-5, -6)
     },
     {
-        'id': '7',
-        'source': 'UAV-borne photogrammetric survey by Geosphere Austria',
-        'src_date': '20240902',
+        'local_id': '7',
+        'instrument': 'UAV-borne photogrammetric survey by Geosphere Austria',
+        'instrument_short_name': 'GeosphUAV',
+        'source_date': dt.datetime(2024, 9, 2),
         'image_id': '3822-5100',
-        'geometry': Point(-5, -6)
+        'centroid': Point(-5, -6)
     },
     {
-        'id': '7',
-        'source': 'UAV-borne photogrammetric survey by Geosphere Austria',
-        'src_date': '20240902',
+        'local_id': '7',
+        'instrument': 'UAV-borne photogrammetric survey by Geosphere Austria',
+        'instrument_short_name': 'GeosphUAV',
+        'source_date': dt.datetime(2024, 9, 2),
         'image_id': '3822-5101',
-        'geometry': Point(-5, -6)
+        'centroid': Point(-5, -6)
     }
 ]
 
