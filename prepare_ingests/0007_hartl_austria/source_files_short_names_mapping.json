@@ -1,0 +1,62 @@
+[
+    {
+        "instrument_id": "5248",
+        "instrument_short_name":  "Aerial20",
+        "instrument_long_name": "Orthoimagery Province of Tyrol",
+        "instrument_platform_name": "aerial"
+    },
+    {
+        "instrument_id": "5249",
+        "instrument_short_name": "Aerial21",
+        "instrument_long_name": "Orthoimagery Province of Carinthia",
+        "instrument_platform_name": "aerial"
+    },
+    {
+        "instrument_id": "5250", 
+        "instrument_short_name": "Aerial22",
+        "instrument_long_name": "Orthoimagery Province of Salzburg",
+        "instrument_platform_name": "aerial"
+    },
+    {
+        "instrument_id": "5251",
+        "instrument_short_name": "Aerial23",
+        "instrument_long_name": "Orthoimagery Province of Vorarlberg",
+        "instrument_platform_name": "aerial"
+    },
+    {
+        "instrument_id": "5253",
+        "instrument_short_name": "GeosphUAV",
+        "instrument_long_name": "UAV-borne photogrammetric survey by Geosphere Austria",
+        "instrument_platform_name":  "UAV"
+    },
+    {
+        "instrument_id": NULL,
+        "instrument_short_name": "Aerial24",
+        "instrument_long_name": "Orthoimagery Federal Office of Metrology and Surveying - data.bev.gv.at",
+        "instrument_platform_name": "aerial"
+    },
+    {
+        "instrument_id": NULL,
+        "instrument_short_name": "CarinthDEM",
+        "instrument_long_name": "DEM Hillshade Province of Carinthia",
+        "instrument_platform_name": NULL
+    },
+    {
+        "instrument_id": NULL,
+        "instrument_short_name": "SalzbgDEM",
+        "instrument_long_name": "DEM Hillshade Province of Salzburg",
+        "instrument_platform_name": NULL
+    },
+    {
+        "instrument_id": NULL,
+        "instrument_short_name": "TyrolDEM",
+        "instrument_long_name": "DEM Hillshade Province of Tyrol",
+        "instrument_platform_name": NULL
+    },
+    {
+        "instrument_id": "146",
+        "instrument_short_name": "SuperDove",
+        "instrument_long_name": "PlanetScope SuperDove Camera",
+        "instrument_platform_name": NULL
+    }
+]
