@@ -267,73 +267,74 @@ def prepare_one_region(filepath: Path) -> None:
     gdf = load_shapefile(filepath)
 
     # For each year loop through outlines
+    for year, group in gdf.groupby(gdf.src_date.dt.year):
 
-    # Make directory under FOR_INGEST_PATH to hold region files
-    REGION_INGEST_PATH = PREPROCESSED_PATH / region_name.lower()
-    REGION_INGEST_PATH.mkdir(parents=True, exist_ok=True)
+        # Make directory under FOR_INGEST_PATH to hold region files
+        REGION_INGEST_PATH = PREPROCESSED_PATH / region_name.lower() / str(year)
+        REGION_INGEST_PATH.mkdir(parents=True, exist_ok=True)
 
-    # Extract region metadata in WGS84
-    dataset_centroid = (
-        gpd.GeoSeries(
-            [gdf.centroid.union_all().centroid],
-            crs=gdf.crs
-        ).to_crs(4326)[0].x,
-        gpd.GeoSeries(
-            [gdf.centroid.union_all().centroid],
-            crs=gdf.crs
-        ).to_crs(4326)[0].y
-    )  # Done in native CRS to avoid complications of centroid in ll
+        # Extract region metadata in WGS84
+        dataset_centroid = (
+            gpd.GeoSeries(
+                [group.centroid.union_all().centroid],
+                crs=group.crs
+            ).to_crs(4326)[0].x,
+            gpd.GeoSeries(
+                [group.centroid.union_all().centroid],
+                crs=group.crs
+                ).to_crs(4326)[0].y
+            )  # Done in native CRS to avoid complications of centroid in ll
 
-    gdf = gdf.to_crs(4326)
-    shapefile_bounds = gdf.total_bounds
+        group = group.to_crs(4326)
+        shapefile_bounds = group.total_bounds
 
-    # Extract GeoJSON of Images
-    images = get_images_from_geodataframe(gdf)
+        # Extract GeoJSON of Images
+        images = get_images_from_geodataframe(group)
 
-    # Create `image.gmt`
-    image_gmt_str = make_image_gmt(shapefile_bounds, gdf.crs.to_wkt(), images)
-    if write_file:
-        with open(REGION_INGEST_PATH / "image.gmt", "w") as fo:
-            fo.write(image_gmt_str)
-    else:
-        print(image_gmt_str)
+        # Create `image.gmt`
+        image_gmt_str = make_image_gmt(shapefile_bounds, group.crs.to_wkt(), images)
+        if write_file:
+            with open(REGION_INGEST_PATH / "image.gmt", "w") as fo:
+                fo.write(image_gmt_str)
+        else:
+            print(image_gmt_str)
 
-    # Create `session.gmt`
-    analysts = [
-        (analyst["analyst"]["surname"], analyst["analyst"]["first_name"])
-        for analyst in region_metadata["analysts"]
-    ]
-    analysts.append(("Hartl", "Lea"))  # Add Lea Hartl
-    session_gmt_str = make_session_gmt(
-        shapefile_bounds,
-        gdf.crs.to_wkt(),
-        metadata.rc_id,
-        analysis_time,
-        session_data_source,
-        session_process_description,
-        analysts,
-        "",
-        dataset_centroid,
+        # Create `session.gmt`
+        analysts = [
+            (analyst["analyst"]["surname"], analyst["analyst"]["first_name"])
+            for analyst in region_metadata["analysts"]
+        ]
+        analysts.append(("Hartl", "Lea"))  # Add Lea Hartl
+        session_gmt_str = make_session_gmt(
+            shapefile_bounds,
+            group.crs.to_wkt(),
+            metadata.rc_id,
+            analysis_time,
+            session_data_source,
+            session_process_description,
+            analysts,
+            "",
+            dataset_centroid,
         )
-    if write_file:
-        with open(REGION_INGEST_PATH / "session.gmt", "w") as fo:
-            fo.write(session_gmt_str)
-    else:
-        print(session_gmt_str)
+        if write_file:
+            with open(REGION_INGEST_PATH / "session.gmt", "w") as fo:
+                fo.write(session_gmt_str)
+        else:
+            print(session_gmt_str)
 
-    # Create metadata.txt
-    metadata.file_name = filepath.name
-    metadata.file_size = filepath.stat().st_size
-    if write_file:
-        metadata.write_metadata_file(REGION_INGEST_PATH / "metadata.txt")
-    else:
-        metadata.print_metadata_file()
+        # Create metadata.txt
+        metadata.file_name = filepath.name
+        metadata.file_size = filepath.stat().st_size
+        if write_file:
+            metadata.write_metadata_file(REGION_INGEST_PATH / "metadata.txt")
+        else:
+            metadata.print_metadata_file()
 
-    # Create glaciers.shp
-    glacier_gdf = make_glacier_shapefile(gdf)
+        # Create glaciers.shp
+        glacier_group = make_glacier_shapefile(group)
 
-    if write_file:
-        glacier_gdf.to_file(REGION_INGEST_PATH / "glaciers.shp")
+        if write_file:
+            glacier_group.to_file(REGION_INGEST_PATH / "glaciers.shp")
 
 
 def load_shapefile(fp):
