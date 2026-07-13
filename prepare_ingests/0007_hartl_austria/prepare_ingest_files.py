@@ -336,7 +336,7 @@ def prepare_one_region(filepath: Path) -> None:
         glacier_group = make_glacier_shapefile(group)
 
         if write_file:
-            glacier_group.to_file(REGION_INGEST_PATH / "glaciers.shp")
+            glacier_group.to_file(REGION_INGEST_PATH / "glacier_outlines.shp")
 
 
 def load_shapefile(fp):
