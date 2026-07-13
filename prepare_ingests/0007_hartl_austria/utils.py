@@ -86,7 +86,7 @@ def parse_images(x):
                     short_name,
                     x["src_date"],
                     iid,
-                    x["geometry"]
+                    x["geometry"].centroid
                 ) for iid in re.split(', ?', ids.strip())
                 ]
         return result
