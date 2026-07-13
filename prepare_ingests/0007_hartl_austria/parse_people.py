@@ -84,6 +84,8 @@ def parse_entry(line):
         'givennames': givennames,
         'department': department,
         'affiliation': institute,
+        'address1': department,
+        'address2': institute,
         'postal_code': postcode,
         'city': settlement,
         'country_code': country_code_lookup.get(country, ''),
