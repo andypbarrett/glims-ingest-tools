@@ -254,7 +254,6 @@ def prepare_one_region(filepath: Path) -> None:
     metadata = NewSubmission.from_json(
         PREPROCESSED_PATH / "metadata_template.json"
     )
-    print(PREPROCESSED_PATH / "subregions.json")
     subregions = load_subregions(PREPROCESSED_PATH / "subregions.json")
 
     # Get region metadata for region of interest
