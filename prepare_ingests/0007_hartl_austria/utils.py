@@ -19,6 +19,8 @@ instrument_short_names = {
     "Orthoimagery Province of Carinthia": 'Aerial21',
     "Orthoimagery Province of Vorarlberg": 'Aerial23',
     "UAV-borne photogrammetric survey by Geosphere Austria": 'GeosphUAV',
+    "Orthoimagery and DEM Hillshade Province of Salzburg": 'Aerial22',
+    "DEM Hillshade and Orthoimagery Province of Tyrol": 'Aerial20',
     }
 
 
