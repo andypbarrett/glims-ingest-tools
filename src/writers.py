@@ -94,7 +94,7 @@ def make_image_feature_data(img: dict) -> str:
 
         {
             "source_date": dt.datetime of source date of image,
-            "instrument": name of instrument
+            "instrument": short-name of instrument
             "image_id": original id for image
             "centroid": (lat, lon) centroid of image
         }
