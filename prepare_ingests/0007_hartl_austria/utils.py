@@ -68,8 +68,8 @@ def parse_images(x):
             # Determine source
             if province.lower() in x["source"].lower():
                 source = x["source"]
-            elif province.lower() in x["source2"].lower():
-                source = x["source2"]
+            elif province.lower() in x["source_2"].lower():
+                source = x["source_2"]
             else:
                 source = x["source"]
 
