@@ -339,7 +339,7 @@ def prepare_one_region(filepath: Path) -> None:
 
 
 def load_shapefile(fp):
-    """Loads and checks shapefile"""
+    """Loads and homogenizes shapefile"""
     gdf = gpd.read_file(fp)
     gdf = homogenize_image_source_name(gdf)
     gdf = fix_source_date_string(gdf)
