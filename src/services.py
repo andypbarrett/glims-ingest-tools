@@ -73,3 +73,17 @@ def get_next_ids(id_type: str = None) -> list(dict):
     response = query_service(query)
 
     return NextIDs._make(response.values())
+
+
+def get_instruments() -> list(dict):
+    """Queries www.glims.org/services/instruments
+
+    Returns:
+      A list of dictionaries.  One dictionary per instrument
+    """
+
+    query = f"{ROOT_URL}/instruments"
+
+    response = query_service(query)
+
+    return response
