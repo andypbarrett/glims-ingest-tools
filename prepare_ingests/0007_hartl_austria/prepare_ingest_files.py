@@ -347,15 +347,6 @@ def load_shapefile(fp):
     return gdf
 
 
-def test_prep(fp):
-    gdf = load_shapefile(fp)
-
-    if not is_single_year(gdf):
-        warnings.warn(f"Outlines for more than one year in {fp}")
-
-    print(len(gdf.groupby(gdf.src_date.dt.year)))
-
-
 def prepare_ingest_files():
     """Generates ingest files for all regions of Austrian Glacier Inventory"""
     OUTLINE_FILES = sorted(
@@ -365,9 +356,9 @@ def prepare_ingest_files():
         ]
     )
 
-    for fp in OUTLINE_FILES[:3]:
+    for fp in OUTLINE_FILES:
+        print(f"Processing {fp.name}")
         prepare_one_region(fp)
-#        test_prep(fp)
 
 
 if __name__ == "__main__":
