@@ -34,7 +34,7 @@ def image_object(local_id, source, short_name,
         "local_id": local_id,
         "instrument": source,
         "instrument_short_name": short_name,
-        "source_date": dt.datetime.strptime(source_date, "%Y%m%d"),
+        "source_date": source_date,
         'image_id': image_id,
         'centroid': geometry,
     }
