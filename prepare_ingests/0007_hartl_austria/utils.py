@@ -5,6 +5,8 @@ import re
 import datetime as dt
 
 import geopandas as gpd
+import pandas as pd
+
 
 instrument_short_names = {
     "DEM Hillshade Province of Carinthia": 'CarinthDEM',
@@ -41,6 +43,18 @@ def image_object(local_id, source, short_name,
 
 
 def parse_images(x):
+    if pd.isna(x["image_ID1"]):
+        return [
+            image_object(
+                x["id"],
+                x["source"],
+                instrument_short_names[x["source"]],
+                x["src_date"],
+                '',
+                x["geometry"].centroid
+            )
+        ]
+
     if re.search(r'/', x["image_ID1"]):
         # for two sources of image_id
         result = []
