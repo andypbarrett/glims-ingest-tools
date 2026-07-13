@@ -295,7 +295,7 @@ def prepare_one_region(filepath: Path) -> None:
         # Create `image.gmt`
         image_gmt_str = make_image_gmt(shapefile_bounds, group.crs.to_wkt(), images)
         if write_file:
-            with open(REGION_INGEST_PATH / "image.gmt", "w") as fo:
+            with open(REGION_INGEST_PATH / "images.gmt", "w") as fo:
                 fo.write(image_gmt_str)
         else:
             print(image_gmt_str)
