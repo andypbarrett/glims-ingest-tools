@@ -100,12 +100,12 @@ def make_add_person_sql(people):
     lines += "INSERT INTO people\n"
     lines += f"  ({', '.join(PEOPLE_FIELDS)})\n"
     lines += "VALUES\n"
-    lines += '\n'.join([person.make_people_sql() for person in people])
+    lines += f"  {',\n  '.join([person.make_people_sql() for person in people])}"
     lines += ";\n"
     lines += "INSERT INTO rc_people\n"
     lines += "  (rc_id, contact_id, status)\n"
     lines += "VALUES\n"
-    lines += '\n'.join([person.make_rc_sql() for person in people])
+    lines += f"  {',\n  '.join([person.make_rc_sql() for person in people])}"
     lines += ";\n"
     return lines
 
@@ -138,6 +138,6 @@ def parse_people(outfile: Path):
 
 
 if __name__ == "__main__":
-    outfile = Path("./add_people_agi.sql")
+    outfile = Path("./prepare_ingests/0007_hartl_austria/add_people_agi.sql")
 
     parse_people(outfile)
