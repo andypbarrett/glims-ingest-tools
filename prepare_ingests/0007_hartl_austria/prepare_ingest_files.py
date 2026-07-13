@@ -9,21 +9,27 @@ from pathlib import Path
 import re
 import json
 import datetime as dt
+import warnings
 
-from itertools import chain
+#from itertools import chain
 
 import geopandas as gpd
 import pandas as pd
 
 from glims_ingest_tools.writers import make_image_gmt, make_session_gmt
 from glims_ingest_tools.classes import NewSubmission
-from glims_ingest_tools.shapefile import GLACIER_REQUIRED_FIELDS
+#from glims_ingest_tools.shapefile import GLACIER_REQUIRED_FIELDS
+from glims_ingest_tools.shapefile import (is_single_year,
+                                          is_geometry_polygon,
+                                          is_geometry_closed)
 
 from utils import get_images_from_geodataframe
+
 
 DATAPATH = Path.home() / "Data" / "GLIMS" / "submissions" / "0007_hartl_austria" / "GI5_v2"
 SUBMISSON_PATH = DATAPATH / "submission"
 FOR_INGEST_PATH = DATAPATH / "for_ingest"
+PREPROCESSED_PATH = DATAPATH / "preprocessed"
 
 write_file = True  # Set True to write files
 
@@ -47,7 +53,7 @@ def load_metadata(fp: Path) -> dict:
 
 def load_subregions(fp: Path) -> dict:
     """Returns dict containing subregion metadata"""
-    with open(FOR_INGEST_PATH / "subregions.json", "r") as f:
+    with open(fp, "r") as f:
         subregions = json.load(f)
     return subregions
 
@@ -228,6 +234,8 @@ def make_glacier_shapefile(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
         list(glacier_column_names.values()) + ['geometry', 'source']
     ]
 
+    glacier_gdf['local_id'] = glacier_gdf['local_id'].astype(str)
+
     glacier_gdf = assign_uncertainty(glacier_gdf)
 
     return glacier_gdf
@@ -240,27 +248,29 @@ def prepare_one_region(filepath: Path) -> None:
       filepath : Path to glacier outline GeoJSON
     """
 
-    region_name = get_region_name_from_filepath(filepath)
-
-    # Make directory under FOR_INGEST_PATH to hold region files
-    REGION_INGEST_PATH = FOR_INGEST_PATH / region_name.lower()
-    REGION_INGEST_PATH.mkdir(parents=True, exist_ok=True)
-
     # Load ancilliary data
-    # metadata = load_metadata(FOR_INGEST_PATH / "metadata_template.json")
     metadata = NewSubmission.from_json(
-        FOR_INGEST_PATH / "metadata_template.json"
+        PREPROCESSED_PATH / "metadata_template.json"
     )
-    subregions = load_subregions(FOR_INGEST_PATH / "subregions.json")
+    print(PREPROCESSED_PATH / "subregions.json")
+    subregions = load_subregions(PREPROCESSED_PATH / "subregions.json")
 
     # Get region metadata for region of interest
+    region_name = get_region_name_from_filepath(filepath)
+
     region_metadata = [
         subregion for subregion in subregions
         if subregion["name"] == ' '.join(region_name.split('_'))
     ][0]
 
     # Load GeoJSON with glacier outlines
-    gdf = gpd.read_file(filepath)
+    gdf = load_shapefile(filepath)
+
+    # For each year loop through outlines
+
+    # Make directory under FOR_INGEST_PATH to hold region files
+    REGION_INGEST_PATH = PREPROCESSED_PATH / region_name.lower()
+    REGION_INGEST_PATH.mkdir(parents=True, exist_ok=True)
 
     # Extract region metadata in WGS84
     dataset_centroid = (
@@ -276,9 +286,6 @@ def prepare_one_region(filepath: Path) -> None:
 
     gdf = gdf.to_crs(4326)
     shapefile_bounds = gdf.total_bounds
-
-    gdf = homogenize_image_source_name(gdf)
-    gdf = fix_source_date_string(gdf)
 
     # Extract GeoJSON of Images
     images = get_images_from_geodataframe(gdf)
@@ -329,6 +336,24 @@ def prepare_one_region(filepath: Path) -> None:
         glacier_gdf.to_file(REGION_INGEST_PATH / "glaciers.shp")
 
 
+def load_shapefile(fp):
+    """Loads and checks shapefile"""
+    gdf = gpd.read_file(fp)
+    gdf = homogenize_image_source_name(gdf)
+    gdf = fix_source_date_string(gdf)
+    gdf.src_date = pd.to_datetime(gdf.src_date)
+    return gdf
+
+
+def test_prep(fp):
+    gdf = load_shapefile(fp)
+
+    if not is_single_year(gdf):
+        warnings.warn(f"Outlines for more than one year in {fp}")
+
+    print(len(gdf.groupby(gdf.src_date.dt.year)))
+
+
 def prepare_ingest_files():
     """Generates ingest files for all regions of Austrian Glacier Inventory"""
     OUTLINE_FILES = sorted(
@@ -340,6 +365,7 @@ def prepare_ingest_files():
 
     for fp in OUTLINE_FILES[:2]:
         prepare_one_region(fp)
+#        test_prep(fp)
 
 
 if __name__ == "__main__":
