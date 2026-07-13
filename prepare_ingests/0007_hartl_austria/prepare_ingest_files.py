@@ -366,7 +366,7 @@ def prepare_ingest_files():
         ]
     )
 
-    for fp in OUTLINE_FILES[:2]:
+    for fp in OUTLINE_FILES[:3]:
         prepare_one_region(fp)
 #        test_prep(fp)
 
