@@ -104,7 +104,7 @@ def make_image_feature_data(img: dict) -> str:
     """
     required_keys = [
         "source_date",
-        "instrument",
+        "instrument_short_name",
         "image_id",
         "centroid"
         ]
@@ -115,7 +115,7 @@ def make_image_feature_data(img: dict) -> str:
     s = "# @D"
     s += img["source_date"].strftime('%Y-%m-%d')
     s += '|'
-    s += img["instrument"]
+    s += img["instrument_short_name"]
     s += '|'
     s += img["image_id"] if img["image_id"] else 'unknown'
     s += '\n'
