@@ -65,6 +65,22 @@ def is_geometry_closed(gdf: gpd.GeoDataFrame) -> bool:
     return gdf.geometry.exterior.is_closed.all()
 
 
+def is_multipolygon(row: pd.Series) -> bool:
+    """Checks if geometry is a multipolygon
+
+    Arguments:
+      row : row of GeoDataFrame
+
+    Returns:
+      True if geometry is MultiPolygon, False otherwise
+
+    Example:
+
+      gdf.apply(is_multipolygon, axis=1)
+    """
+    return row.geometry.geom_type == "MultiPolygon"
+
+
 def is_single_year(gdf: gpd.GeoDataFrame) -> bool:
     """Returns True if all source dates are for single year"""
     if "src_date" in gdf:
@@ -82,6 +98,22 @@ def is_single_year(gdf: gpd.GeoDataFrame) -> bool:
     else:
         raise KeyError("src_date not found in columns")
     return False
+
+
+def multipolygon2polygon(gdf: gpd.GeoDataFrame,
+                         add_column: str = "multi") -> gpd.GeoDataFrame:
+    """Splits MultiPolygon geometries into single Polygons.
+    An additional column (default multi) is added to conform
+    WITH glims INGEST codes.
+
+    Arguments:
+      gdf : geopandas.GeoDataFrame to split
+
+    Returns:
+      geopandas.GeoDataFrame with one polygon per row.
+    """
+    gdf[add_column] = gdf.apply(is_multipolygon, axis=1).astype(str).str.lower()
+    return gdf.explode(ignore_index=True)
 
 
 def load_shapefile(
