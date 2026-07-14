@@ -21,7 +21,9 @@ from glims_ingest_tools.classes import NewSubmission
 #from glims_ingest_tools.shapefile import GLACIER_REQUIRED_FIELDS
 from glims_ingest_tools.shapefile import (is_single_year,
                                           is_geometry_polygon,
-                                          is_geometry_closed)
+                                          is_geometry_closed,
+                                          is_multipolygon,
+                                          multipolygon2polygon)
 
 from utils import get_images_from_geodataframe
 
@@ -194,11 +196,13 @@ def assign_uncertainty(gdf):
     return gdf
 
 
-def make_glacier_shapefile(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+def make_glacier_shapefile(gdf: gpd.GeoDataFrame,
+                           split_multipolygon: bool = False) -> gpd.GeoDataFrame:
     """Creates GeoDataFrame for glaciers.shp
 
     Arguments:
       gdf : GeoDataFrame object for original GeoJSON
+      split_multipolygon : split MultiPolygons
 
     Returns:
       GeoDataFrame with columns and structure of glacier.shp
@@ -239,6 +243,10 @@ def make_glacier_shapefile(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     glacier_gdf = assign_uncertainty(glacier_gdf)
 
     glacier_gdf["src_date"] = glacier_gdf.src_date.dt.strftime("%Y%m%d")
+
+    if split_multipolygon:
+        if glacier_gdf.apply(is_multipolygon, axis=1).any():
+            multipolygon2polygon(glacier_gdf)
 
     return glacier_gdf
 
