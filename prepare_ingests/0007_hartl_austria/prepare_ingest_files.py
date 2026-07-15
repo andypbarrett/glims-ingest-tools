@@ -251,7 +251,8 @@ def make_glacier_shapefile(gdf: gpd.GeoDataFrame,
     return glacier_gdf
 
 
-def prepare_one_region(filepath: Path) -> None:
+def prepare_one_region(filepath: Path
+                       split_multipolygon: bool = False) -> None:
     """Prepares ingest files for one region
 
     Arguments:
@@ -340,7 +341,10 @@ def prepare_one_region(filepath: Path) -> None:
             metadata.print_metadata_file()
 
         # Create glaciers.shp
-        glacier_group = make_glacier_shapefile(group)
+        glacier_group = make_glacier_shapefile(
+            group,
+            split_multipolygon=split_multipolygon
+        )
 
         if write_file:
             glacier_group.to_file(REGION_INGEST_PATH / "preprocessed_outlines.shp")
@@ -355,7 +359,7 @@ def load_shapefile(fp):
     return gdf
 
 
-def prepare_ingest_files():
+def prepare_ingest_files(split_multipolygon=False):
     """Generates ingest files for all regions of Austrian Glacier Inventory"""
     OUTLINE_FILES = sorted(
         [
@@ -366,8 +370,10 @@ def prepare_ingest_files():
 
     for fp in OUTLINE_FILES:
         print(f"Processing {fp.name}")
-        prepare_one_region(fp)
+        prepare_one_region(fp, split_multipolygon=split_multipolygon)
 
 
 if __name__ == "__main__":
-    prepare_ingest_files()
+    split_multipolygon = True
+    
+    prepare_ingest_files(split_multipolygon=split_multipolygon)
