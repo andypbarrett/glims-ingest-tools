@@ -122,6 +122,7 @@ def load_shapefile(
         drop_variables: list[str] = [],
         check_geometry: bool = True,
         check_years: bool = True,
+        **kwargs,
 ) -> gpd.GeoDataFrane:
     """Loads a Shapefile or GeoJSON file and returns a geopandas.GeoDataFrame
 
