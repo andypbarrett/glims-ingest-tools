@@ -197,7 +197,8 @@ def assign_uncertainty(gdf):
 
 
 def make_glacier_shapefile(gdf: gpd.GeoDataFrame,
-                           split_multipolygon: bool = False) -> gpd.GeoDataFrame:
+                           split_multipolygon: bool = False,
+                           na_values: dict | None = None) -> gpd.GeoDataFrame:
     """Creates GeoDataFrame for glaciers.shp
 
     Arguments:
@@ -244,14 +245,19 @@ def make_glacier_shapefile(gdf: gpd.GeoDataFrame,
 
     glacier_gdf["src_date"] = glacier_gdf.src_date.dt.strftime("%Y%m%d")
 
+    if (glacier_gdf.name == 'NN').any():
+        print('Found NN in glacier name, setting to empty string')
+        glacier_gdf.loc[glacier_gdf.name == 'NN', 'name'] = ''
+
     if split_multipolygon:
         if glacier_gdf.apply(is_multipolygon, axis=1).any():
-            multipolygon2polygon(glacier_gdf)
+            print("Found MultiPolygons, 'exploding' MultiPolygons to Polygons")
+            glacier_gdf = multipolygon2polygon(glacier_gdf)
 
     return glacier_gdf
 
 
-def prepare_one_region(filepath: Path
+def prepare_one_region(filepath: Path,
                        split_multipolygon: bool = False) -> None:
     """Prepares ingest files for one region
 
@@ -368,12 +374,12 @@ def prepare_ingest_files(split_multipolygon=False):
         ]
     )
 
-    for fp in OUTLINE_FILES:
+    for fp in OUTLINE_FILES[10:11]:
         print(f"Processing {fp.name}")
         prepare_one_region(fp, split_multipolygon=split_multipolygon)
 
 
 if __name__ == "__main__":
     split_multipolygon = True
-    
+
     prepare_ingest_files(split_multipolygon=split_multipolygon)
