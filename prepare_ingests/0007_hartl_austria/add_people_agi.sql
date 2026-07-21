@@ -1,0 +1,53 @@
+BEGIN;
+INSERT INTO people
+  (contact_id, surname, givennames, prof_title, affiliation, department, address1, address2, city, state_province, postal_code, country_code, office_loc, url_primary, url_additional, workphone_primary, workphone_additional, workfax, homephone, mobilephone, email_primary, email_additional, prof_interest, glims_role, affiliation_points, principal_flag, comment, status)
+VALUES
+  (1067,'Hartl','Lea',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1068,'Akguen','Ayla Marie',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1070,'Conzelmann','Svenja',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1071,'Hartig','Anne',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1072,'Hartl','Lea',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1073,'Haut','Anna',NULL,'University of Salzburg','Department of Environment and Biodiversity','Department of Environment and Biodiversity','University of Salzburg','Salzburg',NULL,5020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1074,'Helfricht','Kay',NULL,'Office of the Tyrolean Government','Hydrographic Service Tyrol','Hydrographic Service Tyrol','Office of the Tyrolean Government','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1075,'Hynek','Bernhard',NULL,'Geosphere Austria','Department Climate Impact Research','Department Climate Impact Research','Geosphere Austria','Vienna',NULL,1190,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1076,'Kaucher','Marie Sophie',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1077,'Kellerer-Pirklbauer','Andreas',NULL,'University of Graz','Department of Geography and Regional Science','Department of Geography and Regional Science','University of Graz','Graz',NULL,8010,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1078,'Kogel','Ann Christin',NULL,'University of Innsbruck','Department of Atmospheric and Cryospheric Sciences','Department of Atmospheric and Cryospheric Sciences','University of Innsbruck','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1079,'Krippes','Julie',NULL,'University of Salzburg','Department of Environment and Biodiversity','Department of Environment and Biodiversity','University of Salzburg','Salzburg',NULL,5020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1080,'Lauria','Marcela Violeta',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1081,'Mayer','Christoph',NULL,'Bavarian Academy of Sciences and Humanities','Geodesy and Glaciology','Geodesy and Glaciology','Bavarian Academy of Sciences and Humanities','Munich',NULL,80539,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1082,'Otto','Jan-Cristoph',NULL,'University of Salzburg','Department of Environment and Biodiversity','Department of Environment and Biodiversity','University of Salzburg','Salzburg',NULL,5020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1083,'Prinz','Rainer',NULL,'University of Innsbruck','Department of Atmospheric and Cryospheric Sciences','Department of Atmospheric and Cryospheric Sciences','University of Innsbruck','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1084,'Proelß','Sina',NULL,'Hochgebirgsnaturpark Zillertaler Alpen',NULL,NULL,'Hochgebirgsnaturpark Zillertaler Alpen','Ginzling',NULL,6295,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1085,'Schönleber','Lea',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1086,'Seiser','Bernd',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1087,'Stocker-Waldhuber','Martin',NULL,'Austrian Academy of Sciences','Institute for Interdisciplinary Mountain Research','Institute for Interdisciplinary Mountain Research','Austrian Academy of Sciences','Innsbruck',NULL,6020,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1088,'Strudl','Markus',NULL,NULL,NULL,NULL,NULL,'Imst',NULL,6460,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1089,'Verhounik','Martin',NULL,'Graz University of Technology','Institute of Geodesy','Institute of Geodesy','Graz University of Technology','Graz',NULL,8010,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1),
+  (1090,'Zandler','Harald',NULL,'University of Graz','Department of Geography and Regional Science','Department of Geography and Regional Science','University of Graz','Graz',NULL,8010,'AT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,False,NULL,1);
+INSERT INTO rc_people
+  (rc_id, contact_id, status)
+VALUES
+  (34,1067,1),
+  (34,1068,1),
+  (34,1070,1),
+  (34,1071,1),
+  (34,1072,1),
+  (34,1073,1),
+  (34,1074,1),
+  (34,1075,1),
+  (34,1076,1),
+  (34,1077,1),
+  (34,1078,1),
+  (34,1079,1),
+  (34,1080,1),
+  (34,1081,1),
+  (34,1082,1),
+  (34,1083,1),
+  (34,1084,1),
+  (34,1085,1),
+  (34,1086,1),
+  (34,1087,1),
+  (34,1088,1),
+  (34,1089,1),
+  (34,1090,1);
