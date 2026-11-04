@@ -17,9 +17,9 @@ class Rule:
         self.condition = condition
         self.message = message
 
-    def check(self, gdf: gpd.GeoDataFrame):
+    def check(self, obj: object):
         """Runs test on GeoDataFrame using condition"""
-        self.result = self.condition(gdf)
+        self.result = self.condition(obj)
 
     def report(self) -> str:
         """Generate report"""
