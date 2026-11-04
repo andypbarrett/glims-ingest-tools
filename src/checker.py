@@ -1,8 +1,28 @@
 """Module to check shapefiles submitted for ingest.  Assumes that shapefiles 
 are loaded into geopandas.GeoDataFrame.
 """
-
+from pathlib import Path
 import geopandas as gpd
+
+FILE_TYPES = [
+    '.zip',
+    '.shp',
+    '.json',
+    '.geojson',
+]
+
+MAP_ATTRIBUTES = [
+    'map_name',
+    'auth_pub',
+    'pub_date',
+    'scale',
+    ]
+
+IMAGE_ATTRIBUTES = [
+    'instr_name',
+    'orig_id',
+    'acq_time'
+]
 
 
 class Rule:
@@ -66,7 +86,7 @@ class HasImageAttributes(Rule):
     """
     def __init__(self):
         super().__init__(
-            lambda gdf: all([a in gdf for a in ['instr_name', 'orig_id', 'acq_time']]),
+            lambda gdf: all([a in gdf for a in IMAGE_ATTRIBUTES]),
             "Has image attributes"
             )
 
@@ -78,16 +98,9 @@ class HasMapAttributes(Rule):
        pub_date
        scale
     """
-    map_attributes = [
-        'map_name',
-        'auth_pub',
-        'pub_date',
-        'scale',
-        ]
-
     def __init__(self):
         super().__init__(
-            lambda gdf: all([a in gdf for a in map_attributes]),
+            lambda gdf: all([a in gdf for a in MAP_ATTRIBUTES]),
             "Has map attributes"
             )
 
@@ -100,3 +113,8 @@ class HasCRS(Rule):
             "Has CRS"
             )
 
+
+def check_submission(outline_file: Path, json_file: Path, metadata_file: Path=None):
+    """Checks submission to ensure files contain required information"""
+
+    
