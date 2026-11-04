@@ -31,6 +31,15 @@ class Rule:
         return self.result
 
 
+class IsAllowedFileType(Rule):
+    """Checks that file is correct type"""
+    def __init__(self):
+        super().__init__(
+            lambda obj: obj.suffix in FILE_TYPES,
+            "Is a allowed file type"
+            )
+
+
 class HasLocalID(Rule):
     """Tests that GeoDataFrame has local_id attribute"""
     def __init__(self):
