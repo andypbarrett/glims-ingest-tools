@@ -81,3 +81,13 @@ class HasMapAttributes(Rule):
             lambda gdf: all([a in gdf for a in map_attributes]),
             "Has map attributes"
             )
+
+
+class HasCRS(Rule):
+    """Tests that GeoDataFrame has *C*oordinate *R*eference *S*ystem"""
+    def __init__(self):
+        super().__init__(
+            lambda gdf: gdf.crs,
+            "Has CRS"
+            )
+
